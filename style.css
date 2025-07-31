@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+body.not-loaded {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+body {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.garden {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(to bottom, #87CEEB 0%, #98D8E8 30%, #90EE90 100%);
+}
+
+/* Sky Elements */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+}
+
+.sun {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #FFD700, #FFA500);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.8;
+    animation: float 8s ease-in-out infinite;
+}
+
+.cloud:before,
+.cloud:after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+}
+
+.cloud1 {
+    width: 100px;
+    height: 40px;
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.cloud1:before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+}
+
+.cloud1:after {
+    width: 60px;
+    height: 40px;
+    top: -15px;
+    right: 10px;
+}
+
+.cloud2 {
+    width: 80px;
+    height: 30px;
+    top: 25%;
+    right: 30%;
+    animation-delay: -2s;
+}
+
+.cloud2:before {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 15px;
+}
+
+.cloud2:after {
+    width: 50px;
+    height: 30px;
+    top: -10px;
+    right: 15px;
+}
+
+.cloud3 {
+    width: 120px;
+    height: 50px;
+    top: 8%;
+    left: 50%;
+    animation-delay: -4s;
+}
+
+.cloud3:before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 20px;
+}
+
+.cloud3:after {
+    width: 70px;
+    height: 50px;
+    top: -20px;
+    right: 20px;
+}
+
+/* Ground */
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, #228B22, #32CD32);
+}
+
+/* Flower Base Styles */
+.flower {
+    position: absolute;
+    animation: grow 2s ease-out forwards;
+    transform-origin: bottom center;
+    opacity: 0;
+}
+
+.flower.planted {
+    animation: plantGrow 1.5s ease-out forwards;
+}
+
+.stem {
+    width: 6px;
+    height: 80px;
+    background: linear-gradient(to top, #2F4F2F, #228B22);
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+    animation: stemGrow 1.5s ease-out forwards, sway 4s ease-in-out infinite 2s;
+}
+
+.stem.thick {
+    width: 8px;
+    height: 100px;
+}
+
+.bloom {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bloom 1s ease-out 1.5s forwards;
+    opacity: 0;
+}
+
+.leaf {
+    position: absolute;
+    width: 20px;
+    height: 12px;
+    background: linear-gradient(45deg, #228B22, #32CD32);
+    border-radius: 0 100% 0 100%;
+    animation: leafGrow 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.leaf1 {
+    left: -15px;
+    top: 30px;
+    transform: rotate(-30deg);
+    animation-delay: 1.8s;
+}
+
+.leaf2 {
+    right: -15px;
+    top: 45px;
+    transform: rotate(30deg) scaleX(-1);
+    animation-delay: 2s;
+}
+
+.leaf.large {
+    width: 25px;
+    height: 15px;
+}
+
+/* Rose Styles */
+.rose .bloom {
+    width: 35px;
+    height: 35px;
+}
+
+.rose .petal {
+    position: absolute;
+    width: 18px;
+    height: 22px;
+    background: linear-gradient(45deg, #DC143C, #FF69B4);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.rose .petal1 { top: 6px; left: 8px; }
+.rose .petal2 { top: 12px; left: 17px; transform: rotate(72deg); }
+.rose .petal3 { top: 20px; left: 12px; transform: rotate(144deg); }
+.rose .petal4 { top: 15px; left: 2px; transform: rotate(216deg); }
+.rose .petal5 { top: 8px; left: 5px; transform: rotate(288deg); }
+
+.rose .center {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #8B0000, #DC143C);
+    border-radius: 50%;
+}
+
+/* Daisy Styles */
+.daisy .bloom {
+    width: 40px;
+    height: 40px;
+}
+
+.daisy .petal-ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.daisy .petal {
+    position: absolute;
+    top: 5px;
+    left: 18px;
+    width: 4px;
